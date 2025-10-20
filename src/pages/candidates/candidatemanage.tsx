@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Users, Search, XCircle, Trash2 } from "lucide-react";
 // import { getCandidates, deleteCandidate } from "../../services/candidateService";
 
+
+interface Candidate {
+  id: string;
+  name: string;
+  party: string;
+}
+
 export default function CandidateManage() {
-  const [candidates, setCandidates] = useState([]);
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedParty, setSelectedParty] = useState("All");
-  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
 
   // Dummy data
   const dummyCandidates = [
@@ -44,26 +51,26 @@ export default function CandidateManage() {
     },
   ];
 
-  useEffect(() => {
-    // Commented until API integration
-    // const fetchData = async () => {
-    //   try {
-    //     const data = await getCandidates();
-    //     setCandidates(data);
-    //   } catch (err) {
-    //     console.error("Failed to fetch candidates", err);
-    //   }
-    // };
-    // fetchData();
+    useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/candidates");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: Candidate[] = await response.json();
+        setCandidates(data);
+      } catch (err) {
+        console.error("Failed to fetch candidates:", err);
+      }
+    };
 
-    // Use dummy data for now
-    setCandidates(dummyCandidates);
+    fetchData();
   }, []);
 
   const filteredCandidates = candidates.filter((c) => {
     const matchesSearch =
-      c.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      c.nic.toLowerCase().includes(searchTerm.toLowerCase());
+      c.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesParty =
       selectedParty === "All" || c.party === selectedParty;
     return matchesSearch && matchesParty;
@@ -71,7 +78,7 @@ export default function CandidateManage() {
 
   const parties = ["All", ...new Set(candidates.map((c) => c.party))];
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: string) => {
     if (!window.confirm("Are you sure you want to delete this candidate?")) return;
     // deleteCandidate(id);
     setCandidates((prev) => prev.filter((c) => c.id !== id));
@@ -123,17 +130,16 @@ export default function CandidateManage() {
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-lg">
-                  {c.fullName.charAt(0).toUpperCase()}
+                  {c.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">{c.fullName}</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">{c.name}</h3>
                   <p className="text-sm text-gray-500">{c.party}</p>
                 </div>
               </div>
 
               <div className="mt-4 text-sm text-gray-600">
-                <p><strong>District:</strong> {c.district}</p>
-                <p><strong>Symbol:</strong> {c.symbol}</p>
+                <p><strong>ID:</strong> {c.id}</p>            
               </div>
             </div>
           ))
@@ -157,20 +163,18 @@ export default function CandidateManage() {
 
             <div className="flex items-center gap-4 mb-4">
               <div className="w-14 h-14 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-lg">
-                {selectedCandidate.fullName.charAt(0).toUpperCase()}
+                {selectedCandidate.name.charAt(0).toUpperCase()}
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-800">
-                  {selectedCandidate.fullName}
+                  {selectedCandidate.name}
                 </h3>
                 <p className="text-sm text-gray-500">{selectedCandidate.party}</p>
               </div>
             </div>
 
             <div className="space-y-2 text-sm text-gray-700">
-              <p><strong>NIC:</strong> {selectedCandidate.nic}</p>
-              <p><strong>District:</strong> {selectedCandidate.district}</p>
-              <p><strong>Symbol:</strong> {selectedCandidate.symbol}</p>
+              <p><strong>NIC:</strong> {selectedCandidate.id}</p>
             </div>
 
             <div className="mt-6 border-t pt-4">

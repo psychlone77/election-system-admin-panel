@@ -79,6 +79,7 @@ export default function AdminLayout() {
             {openDropdown === "voters" && (
               <div className="ml-8 mt-1 space-y-1 animate-fadeIn">
                 <SubNav to="/voters/register" label="Voters Register" />
+                <SubNav to="/voters/manage" label="Voters Manage" />
               </div>
             )}
           </div>

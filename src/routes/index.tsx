@@ -6,6 +6,7 @@ import Login from "../pages/login";
 import CandidateManage from "../pages/candidates/candidatemanage";  
 import CandidateRegister from "../pages/candidates/candidateregister";
 import VoterRegister from "../pages/voters/voterregister";
+import VoterMange from "../pages/voters/votermanage";
 // import Candidates from "../pages/Candidates";
 // import Voters from "../pages/Voters";
 // import ElectionSetup from "../pages/ElectionSetup";
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "candidates/manage", element: <CandidateManage /> },
       { path: "candidates/register", element: <CandidateRegister /> },
       { path: "voters/register", element: <VoterRegister /> },
+      { path: "voters/manage", element: <VoterMange /> },
       // { path: "setup", element: <ElectionSetup /> },
       // { path: "tally", element: <Tally /> },
       // { path: "logs", element: <Logs /> },

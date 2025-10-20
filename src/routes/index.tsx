@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import AdminLayout from "../layouts/adminlayouts";
-import Dashboard from "../pages/Dashboard";
-import Register from "../pages/Register";
-import Login from "../pages/Login";
+import Dashboard from "../pages/dashboard";
+import Register from "../pages/register";
+import Login from "../pages/login";
 import CandidateManage from "../pages/candidates/candidatemanage";  
 import CandidateRegister from "../pages/candidates/candidateregister";
+import VoterRegister from "../pages/voters/voterregister";
 // import Candidates from "../pages/Candidates";
 // import Voters from "../pages/Voters";
 // import ElectionSetup from "../pages/ElectionSetup";
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: "candidates/manage", element: <CandidateManage /> },
       { path: "candidates/register", element: <CandidateRegister /> },
+      { path: "voters/register", element: <VoterRegister /> },
       // { path: "setup", element: <ElectionSetup /> },
       // { path: "tally", element: <Tally /> },
       // { path: "logs", element: <Logs /> },

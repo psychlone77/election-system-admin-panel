@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { UserPlus, Loader2 } from "lucide-react";
 
-export default function CandidateRegister() {
+
+export default function VoterRegister() {
   const [formData, setFormData] = useState({
     name: "",
     party: "", 
@@ -38,7 +39,7 @@ export default function CandidateRegister() {
     const result = await response.json();
     console.log("Server response:", result);
 
-    setMessage("✅ Candidate successfully added!");
+    setMessage("✅ User successfully added!");
     setFormData({ name: "", party: "" });
 
   } catch (err) {
@@ -52,7 +53,7 @@ export default function CandidateRegister() {
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-        <UserPlus className="text-indigo-600" /> Register New Candidate
+        <UserPlus className="text-indigo-600" /> Register New Voter
       </h2>
 
       <form
@@ -73,7 +74,7 @@ export default function CandidateRegister() {
             disabled={loading}
             className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg flex items-center gap-2"
           >
-            {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Add Candidate"}
+            {loading ? <Loader2 className="animate-spin w-4 h-4" /> : "Add Voter"}
           </button>
         </div>
       </form>

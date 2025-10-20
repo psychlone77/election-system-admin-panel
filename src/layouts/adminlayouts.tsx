@@ -56,8 +56,33 @@ export default function AdminLayout() {
               </div>
             )}
           </div>
+          
+          {/* Dropdown for Voters */}
+          <div>
+            <button
+              onClick={() => toggleDropdown("voters")}
+              className={`flex w-full items-center justify-between px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-indigo-600 transition-colors ${
+                openDropdown === "voters" ? "bg-indigo-100 text-indigo-700" : ""
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <Users size={18} />
+                <span>Voters</span>
+              </div>
+              {openDropdown === "voters" ? (
+                <ChevronDown size={16} />
+              ) : (
+                <ChevronRight size={16} />
+              )}
+            </button>
 
-          <NavItem to="/voters" icon={<Users size={18} />} label="Voters" />
+            {openDropdown === "voters" && (
+              <div className="ml-8 mt-1 space-y-1 animate-fadeIn">
+                <SubNav to="/voters/register" label="Voters Register" />
+              </div>
+            )}
+          </div>
+
           <NavItem to="/tally" icon={<BarChart2 size={18} />} label="Tally" />
           <NavItem to="/settings" icon={<Settings size={18} />} label="Settings" />
         </nav>

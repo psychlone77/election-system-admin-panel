@@ -7,6 +7,8 @@ import CandidateManage from "../pages/candidates/candidatemanage";
 import CandidateRegister from "../pages/candidates/candidateregister";
 import VoterDisable from "../pages/voters/voterdisable";
 import VoterMange from "../pages/voters/votermanage";
+import Home from "../pages/home";
+import Vote from "../pages/vote";
 // import Candidates from "../pages/Candidates";
 // import Voters from "../pages/Voters";
 // import ElectionSetup from "../pages/ElectionSetup";
@@ -17,6 +19,14 @@ import Tally from "../pages/Tally";
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/tally",
+    element: <Tally />,
+  },
+  {
+    path: "/admin",
     element: <AdminLayout />, // Sidebar + Header
     children: [
       { index: true, element: <Dashboard /> },
@@ -34,10 +44,14 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
-    {
+  {
     path: "/login",
     element: <Login />,
   },
+  {
+    path: "/vote",
+    element: <Vote />,
+  }
 ]);
 
 export default router;

@@ -7,7 +7,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    nic: "",
+    email: "",
     password: "",
   });
 
@@ -24,10 +24,10 @@ export default function Login() {
 
     try {
       setLoading(true);
-      await loginUser(formData.nic, formData.password);
-      navigate("/"); // redirect to dashboard
+      await loginUser(formData.email, formData.password);
+      navigate("/admin"); // redirect to admin panel
     } catch (err: any) {
-      setError(err.message || "Invalid NIC or password.");
+      setError(err.message || "Invalid email or password.");
     } finally {
       setLoading(false);
     }
@@ -50,15 +50,15 @@ export default function Login() {
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">NIC</label>
+            <label className="block text-sm font-medium text-gray-700">Email</label>
             <input
-              type="text"
-              name="nic"
-              value={formData.nic}
+              type="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               required
               className="mt-1 w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
-              placeholder="Enter your NIC"
+              placeholder="Enter your email"
             />
           </div>
 
@@ -99,7 +99,7 @@ export default function Login() {
             )}
           </button>
 
-          <p className="text-center text-sm text-gray-500 mt-3">
+          {/* <p className="text-center text-sm text-gray-500 mt-3">
             Don’t have an account?{" "}
             <button
               type="button"
@@ -108,7 +108,7 @@ export default function Login() {
             >
               Register
             </button>
-          </p>
+          </p> */}
         </form>
       </div>
     </div>

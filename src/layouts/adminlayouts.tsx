@@ -28,7 +28,7 @@ export default function AdminLayout() {
 
         {/* Sidebar Navigation */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
-          <NavItem to="/" icon={<LayoutDashboard size={18} />} label="Dashboard" />
+          <NavItem to="/admin" icon={<LayoutDashboard size={18} />} label="Dashboard" />
 
           {/* Dropdown for Candidates */}
           <div>
@@ -51,8 +51,8 @@ export default function AdminLayout() {
 
             {openDropdown === "candidates" && (
               <div className="ml-8 mt-1 space-y-1 animate-fadeIn">
-                <SubNav to="/candidates/register" label="Candidate Register" />
-                <SubNav to="/candidates/manage" label="Candidate Manage" />
+                <SubNav to="/admin/candidates/register" label="Candidate Register" />
+                <SubNav to="/admin/candidates/manage" label="Candidate Manage" />
               </div>
             )}
           </div>
@@ -78,13 +78,13 @@ export default function AdminLayout() {
 
             {openDropdown === "voters" && (
               <div className="ml-8 mt-1 space-y-1 animate-fadeIn">
-                <SubNav to="/voters/manage" label="Voters manage" />
-                <SubNav to="/voters/disable" label="Voters Disable" /> 
+                <SubNav to="/admin/voters/manage" label="Voters manage" />
+                <SubNav to="/admin/voters/disable" label="Voters Disable" />
               </div>
             )}
           </div>
 
-          <NavItem to="/tally" icon={<BarChart2 size={18} />} label="Tally" />
+          <NavItem to="/admin/tally" icon={<BarChart2 size={18} />} label="Tally" />
           {/* <NavItem to="/settings" icon={<Settings size={18} />} label="Settings" /> */}
         </nav>
 
@@ -96,7 +96,7 @@ export default function AdminLayout() {
           >
             <LogOut size={18} />
             Logout
-          </button>
+          </button>  
         </div>
       </aside>
 

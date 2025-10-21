@@ -42,7 +42,7 @@ export default function Home() {
                 <div className="mt-20"></div>
 
                 {/* Results Section */}
-                <div className="mt-20 bg-indigo-50 rounded-xl p-8">
+                <div className="mt-32 bg-indigo-50 rounded-xl p-8">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold text-gray-900">Election Results</h2>
                         <p className="mt-4 text-lg text-gray-600">
@@ -53,7 +53,7 @@ export default function Home() {
                             className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             <BarChart3 className="h-5 w-5 mr-2" />
-                            View Results
+                            View Election Results
                         </button>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ export default function Home() {
                         </p>
                         <button
                             onClick={() => navigate('/vote')}
-                            className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                            className="mt-6 inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
                         >
                             <Vote className="h-5 w-5 mr-2" />
                             View Votes

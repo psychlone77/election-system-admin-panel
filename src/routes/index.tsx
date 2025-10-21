@@ -5,12 +5,12 @@ import Register from "../pages/register";
 import Login from "../pages/login";
 import CandidateManage from "../pages/candidates/candidatemanage";  
 import CandidateRegister from "../pages/candidates/candidateregister";
-import VoterRegister from "../pages/voters/voterregister";
+import VoterDisable from "../pages/voters/voterdisable";
 import VoterMange from "../pages/voters/votermanage";
 // import Candidates from "../pages/Candidates";
 // import Voters from "../pages/Voters";
 // import ElectionSetup from "../pages/ElectionSetup";
-// import Tally from "../pages/Tally";
+import Tally from "../pages/Tally";
 // import Logs from "../pages/Logs";
 // import Settings from "../pages/Settings";
 
@@ -22,10 +22,10 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: "candidates/manage", element: <CandidateManage /> },
       { path: "candidates/register", element: <CandidateRegister /> },
-      { path: "voters/register", element: <VoterRegister /> },
+      { path: "voters/disable", element: <VoterDisable /> },
       { path: "voters/manage", element: <VoterMange /> },
       // { path: "setup", element: <ElectionSetup /> },
-      // { path: "tally", element: <Tally /> },
+      { path: "tally", element: <Tally /> },
       // { path: "logs", element: <Logs /> },
       // { path: "settings", element: <Settings /> },
     ],

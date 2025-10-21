@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000/api"; // 🔁 change this to match backend
+const API_BASE = "http://localhost:3001/"; // 🔁 change this to match backend
 
 // ✅ Register user
 export async function registerUser(data: {
@@ -19,10 +19,10 @@ export async function registerUser(data: {
   }
 }
 
-// ✅ Login user (NIC + password)
-export async function loginUser(nic: string, password: string) {
+// ✅ Login user (email + password)
+export async function loginUser(email: string, password: string) {
   try {
-    const res = await axios.post(`${API_BASE}/auth/login`, { nic, password });
+    const res = await axios.post(`${API_BASE}/login`, { email, password });
     // Example: store token in localStorage
     if (res.data?.token) {
       localStorage.setItem("token", res.data.token);
@@ -30,7 +30,7 @@ export async function loginUser(nic: string, password: string) {
     return res.data;
   } catch (err: any) {
     console.error("Login failed:", err);
-    throw new Error(err.response?.data?.message || "Invalid NIC or password");
+    throw new Error(err.response?.data?.message || "Invalid email or password");
   }
 }
 

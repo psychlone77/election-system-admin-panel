@@ -8,6 +8,7 @@ interface Voter {
     age: number;
     registration_code: string;
     NIC: string;
+    disabled: boolean;
 }
 
 export default function VoterManage() {
@@ -66,7 +67,7 @@ export default function VoterManage() {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registration Code</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NIC</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
@@ -86,9 +87,14 @@ export default function VoterManage() {
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-gray-900">{voter.NIC}</div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                                        <button className="text-indigo-600 hover:text-indigo-900 mr-3">Edit</button>
-                                        <button className="text-red-600 hover:text-red-900">Delete</button>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                            voter.disabled 
+                                            ? 'bg-red-100 text-red-800' 
+                                            : 'bg-green-100 text-green-800'
+                                        }`}>
+                                            {voter.disabled ? 'Disabled' : 'Active'}
+                                        </span>
                                     </td>
                                 </tr>
                             ))}

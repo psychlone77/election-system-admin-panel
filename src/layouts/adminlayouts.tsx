@@ -78,14 +78,14 @@ export default function AdminLayout() {
 
             {openDropdown === "voters" && (
               <div className="ml-8 mt-1 space-y-1 animate-fadeIn">
-                <SubNav to="/voters/register" label="Voters Register" />
-                <SubNav to="/voters/manage" label="Voters Manage" />
+                <SubNav to="/voters/manage" label="Voters manage" />
+                <SubNav to="/voters/disable" label="Voters Disable" /> 
               </div>
             )}
           </div>
 
           <NavItem to="/tally" icon={<BarChart2 size={18} />} label="Tally" />
-          <NavItem to="/settings" icon={<Settings size={18} />} label="Settings" />
+          {/* <NavItem to="/settings" icon={<Settings size={18} />} label="Settings" /> */}
         </nav>
 
         {/* Logout Section */}

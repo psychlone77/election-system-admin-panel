@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:3001/"; // 🔁 change this to match backend
+const API_BASE = "http://localhost:3001"; // 🔁 change this to match backend
 
 // ✅ Register user
 export async function registerUser(data: {

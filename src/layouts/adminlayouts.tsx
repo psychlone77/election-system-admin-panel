@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   UserPlus,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 export default function AdminLayout() {
+  const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (menu: string) => {
@@ -91,7 +92,9 @@ export default function AdminLayout() {
         {/* Logout Section */}
         <div className="border-t p-4">
           <button
-            onClick={() => alert("Logging out...")}
+            onClick={() => {
+              navigate('/');
+            }}
             className="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600"
           >
             <LogOut size={18} />

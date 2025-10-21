@@ -1,4 +1,4 @@
-import { Vote, BarChart3, Shield, LogIn } from 'lucide-react';
+import { Vote, BarChart3, LogIn } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -39,42 +39,7 @@ export default function Home() {
                 </div>
 
                 {/* Features Section */}
-                <div className="mt-20">
-                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {/* Feature 1 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                            <div className="bg-indigo-100 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                                <Vote className="h-6 w-6 text-indigo-600" />
-                            </div>
-                            <h3 className="text-lg font-medium text-gray-900">Voter Management</h3>
-                            <p className="mt-2 text-gray-500">
-                                Register and manage voters efficiently. Keep track of voter status and eligibility.
-                            </p>
-                        </div>
-
-                        {/* Feature 2 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                            <div className="bg-indigo-100 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                                <BarChart3 className="h-6 w-6 text-indigo-600" />
-                            </div>
-                            <h3 className="text-lg font-medium text-gray-900">Real-time Analytics</h3>
-                            <p className="mt-2 text-gray-500">
-                                Monitor election progress with real-time statistics and detailed analytics.
-                            </p>
-                        </div>
-
-                        {/* Feature 3 */}
-                        <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                            <div className="bg-indigo-100 rounded-lg w-12 h-12 flex items-center justify-center mb-4">
-                                <Shield className="h-6 w-6 text-indigo-600" />
-                            </div>
-                            <h3 className="text-lg font-medium text-gray-900">Secure System</h3>
-                            <p className="mt-2 text-gray-500">
-                                Ensure election integrity with secure authentication and data protection.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <div className="mt-20"></div>
 
                 {/* Results Section */}
                 <div className="mt-20 bg-indigo-50 rounded-xl p-8">

@@ -1,53 +1,52 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { UserPlus, Loader2 } from "lucide-react";
+import { registerCandidate } from "../../services/candidateServices";
+
+interface FormData {
+  name: string;
+  party: string;
+}
+
+interface FormMessage {
+  type: "success" | "error";
+  text: string;
+}
 
 export default function CandidateRegister() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
-    party: "", 
+    party: "",
   });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
+  const [message, setMessage] = useState<FormMessage | null>(null);
 
-  const handleChange = (e) =>
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-  setMessage(null);
-  setError(null);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setMessage(null);
 
-  try {
-    setLoading(true);
-    const candidateData = {
-      id: crypto.randomUUID(), // unique id
-      name: formData.name,
-      party: formData.party,
-    };
-    const response = await fetch("http://localhost:3001/post_candidates", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(candidateData),
-    });
+    try {
+      setLoading(true);
+      await registerCandidate(formData);
 
-    if (!response.ok) {
-      throw new Error(`Server error: ${response.status}`);
+      setMessage({
+        type: "success",
+        text: "✅ Candidate successfully added!",
+      });
+      setFormData({ name: "", party: "" });
+    } catch (err) {
+      console.error(err);
+      setMessage({
+        type: "error",
+        text: err instanceof Error ? err.message : "Registration failed.",
+      });
+    } finally {
+      setLoading(false);
     }
-
-    const result = await response.json();
-    console.log("Server response:", result);
-
-    setMessage("✅ Candidate successfully added!");
-    setFormData({ name: "", party: "" });
-
-  } catch (err) {
-    console.error(err);
-    setError(err.message || "Registration failed.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="p-6">
@@ -61,10 +60,17 @@ export default function CandidateRegister() {
       >
         <Input label="Full Name" name="name" value={formData.name} onChange={handleChange} />
         <Input label="Party" name="party" value={formData.party} onChange={handleChange} />
-      
+
         <div className="col-span-full">
-          {error && <p className="text-red-600 text-sm">{error}</p>}
-          {message && <p className="text-green-600 text-sm">{message}</p>}
+          {message && (
+            <p
+              className={
+                message.type === "error" ? "text-red-600 text-sm" : "text-green-600 text-sm"
+              }
+            >
+              {message.text}
+            </p>
+          )}
         </div>
 
         <div className="col-span-full flex justify-end">
@@ -81,8 +87,16 @@ export default function CandidateRegister() {
   );
 }
 
-/* 🔹 Reusable Input field (JS version) */
-function Input({ label, name, value, onChange, placeholder }) {
+/* 🔹 Reusable Input field */
+interface InputProps {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+}
+
+function Input({ label, name, value, onChange, placeholder }: InputProps) {
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700">{label}</label>

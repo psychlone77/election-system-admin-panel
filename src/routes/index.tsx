@@ -5,15 +5,12 @@ import Dashboard from "../pages/dashboard";
 import Register from "../pages/register";
 import Login from "../pages/login";
 import CandidateManage from "../pages/candidates/candidatemanage";
-import CandidateRegister from "../pages/candidates/candidateregister";
 import VoterDisable from "../pages/voters/voterdisable";
 import VoterMange from "../pages/voters/votermanage";
 import Home from "../pages/home";
 import Vote from "../pages/vote";
-// import Candidates from "../pages/Candidates";
-// import Voters from "../pages/Voters";
-// import ElectionSetup from "../pages/ElectionSetup";
 import Tally from "../pages/Tally";
+import CandidateRegister from "../pages/candidates/candidateregister";
 // import Logs from "../pages/Logs";
 // import Settings from "../pages/Settings";
 

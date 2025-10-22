@@ -1,36 +1,53 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:5000/api"; 
+const API_BASE = "http://10.220.190.160:3001"; // Backend API
 
-export async function registerCandidate(data: {
-  fullName: string;
-  nic: string;
+export interface Candidate {
+  id: string;
+  name: string;
   party: string;
-  district: string;
-  symbol: string;
-}) {
-  try {
-    const res = await axios.post(`${API_BASE}/candidates/register`, data);
-    return res.data;
-  } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Registration failed");
-  }
 }
 
-export async function getCandidates() {
+// Fetch all candidates
+export async function fetchCandidates(): Promise<Candidate[]> {
   try {
     const res = await axios.get(`${API_BASE}/candidates`);
     return res.data;
-  } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to fetch candidates");
+  } catch (err) {
+    console.error("Failed to fetch candidates:", err);
+    if (axios.isAxiosError(err)) {
+      throw new Error(err.response?.data?.message || "Failed to fetch candidates");
+    }
+    throw new Error("Failed to fetch candidates");
   }
 }
 
-export async function deleteCandidate(id: string) {
+// Delete a candidate
+export async function deleteCandidate(id: string): Promise<void> {
   try {
-    const res = await axios.delete(`${API_BASE}/candidates/${id}`);
+    await axios.delete(`${API_BASE}/candidates/${id}`);
+  } catch (err) {
+    console.error("Failed to delete candidate:", err);
+    if (axios.isAxiosError(err)) {
+      throw new Error(err.response?.data?.message || "Failed to delete candidate");
+    }
+    throw new Error("Failed to delete candidate");
+  }
+}
+
+// Register a new candidate
+export async function registerCandidate(data: Omit<Candidate, "id">): Promise<Candidate> {
+  try {
+    const candidateData = {
+      ...data,
+    };
+    const res = await axios.post(`${API_BASE}/post_candidates`, candidateData);
     return res.data;
-  } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Delete failed");
+  } catch (err) {
+    console.error("Failed to register candidate:", err);
+    if (axios.isAxiosError(err)) {
+      throw new Error(err.response?.data?.message || "Failed to register candidate");
+    }
+    throw new Error("Failed to register candidate");
   }
 }

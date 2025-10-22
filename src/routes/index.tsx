@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import AdminLayout from "../layouts/adminlayouts";
+import RequireAuth from "../components/RequireAuth";
 import Dashboard from "../pages/dashboard";
 import Register from "../pages/register";
 import Login from "../pages/login";
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminLayout />, // Sidebar + Header
+    element: (
+      <RequireAuth>
+        <AdminLayout />
+      </RequireAuth>
+    ), // Sidebar + Header (protected)
     children: [
       { index: true, element: <Dashboard /> },
       { path: "candidates/manage", element: <CandidateManage /> },
@@ -55,3 +60,5 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+
+

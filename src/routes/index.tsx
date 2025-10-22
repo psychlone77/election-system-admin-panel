@@ -4,7 +4,7 @@ import RequireAuth from "../components/RequireAuth";
 import Dashboard from "../pages/dashboard";
 import Register from "../pages/register";
 import Login from "../pages/login";
-import CandidateManage from "../pages/candidates/candidatemanage";  
+import CandidateManage from "../pages/candidates/candidatemanage";
 import CandidateRegister from "../pages/candidates/candidateregister";
 import VoterDisable from "../pages/voters/voterdisable";
 import VoterMange from "../pages/voters/votermanage";
@@ -54,11 +54,9 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/vote",
+    path: "/bulletin",
     element: <Vote />,
-  }
+  },
 ]);
 
 export default router;
-
-

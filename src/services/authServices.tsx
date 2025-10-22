@@ -26,6 +26,10 @@ export async function loginUser(email: string, password: string) {
     // Example: store token in localStorage
     if (res.data?.token) {
       localStorage.setItem("token", res.data.token);
+    } else {
+      // Backend didn't return a token. For local development, set a fallback token
+      // so RequireAuth can detect a logged-in state. Remove this in production.
+      localStorage.setItem("token", "__dev_token__");
     }
     return res.data;
   } catch (err: any) {

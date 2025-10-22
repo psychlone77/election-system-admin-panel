@@ -24,7 +24,9 @@ export default function Login() {
 
     try {
       setLoading(true);
-      await loginUser(formData.email, formData.password);
+      const res = await loginUser(formData.email, formData.password);
+      console.log('login response', res);
+      // If login succeeded set by loginUser, navigate to admin
       navigate("/admin"); // redirect to admin panel
     } catch (err: any) {
       setError(err.message || "Invalid email or password.");

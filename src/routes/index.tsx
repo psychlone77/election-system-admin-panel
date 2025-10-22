@@ -10,6 +10,7 @@ import VoterDisable from "../pages/voters/voterdisable";
 import VoterMange from "../pages/voters/votermanage";
 import Home from "../pages/home";
 import Vote from "../pages/vote";
+import PublicTally from "../pages/publictally";
 // import Candidates from "../pages/Candidates";
 // import Voters from "../pages/Voters";
 // import ElectionSetup from "../pages/ElectionSetup";
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/tally",
-    element: <Tally />,
+    path: "/publictally",
+    element: <PublicTally />,
   },
   {
     path: "/admin",

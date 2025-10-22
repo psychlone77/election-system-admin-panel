@@ -5,6 +5,15 @@ import router from "./routes";
 import "./index.css";
 
 
+const clearTallyData = () => {
+  localStorage.removeItem('tallyComplete');
+  localStorage.removeItem('tallyResults');
+  localStorage.removeItem('totalVotes');
+};
+
+clearTallyData();
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   
   <React.StrictMode>

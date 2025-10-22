@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { BarChart2, Award, Play } from 'lucide-react';
+import { BarChart2, Award } from 'lucide-react';
 
 interface Candidate {
     id: string;
@@ -10,51 +10,10 @@ interface Candidate {
     voteCount: number;
 }
 
-export default function Tally() {
-    // Initialize states from localStorage
-    const [candidates, setCandidates] = useState<Candidate[]>(() => {
-        const saved = localStorage.getItem('tallyResults');
-        return saved ? JSON.parse(saved) : [];
-    });
+export default function PublicTally() {
+    const [candidates, setCandidates] = useState<Candidate[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [totalVotes, setTotalVotes] = useState(() => {
-        const saved = localStorage.getItem('totalVotes');
-        return saved ? parseInt(saved) : 0;
-    });
-    const [isTallying, setIsTallying] = useState(false);
-    const [isTallyComplete, setIsTallyComplete] = useState(() => {
-        return localStorage.getItem('tallyComplete') === 'true';
-    });
-
-    // Save results to localStorage when they change
-    useEffect(() => {
-        if (isTallyComplete) {
-            localStorage.setItem('tallyComplete', 'true');
-            localStorage.setItem('tallyResults', JSON.stringify(candidates));
-            localStorage.setItem('totalVotes', totalVotes.toString());
-        }
-    }, [isTallyComplete, candidates, totalVotes]);
-
-    const startTally = async () => {
-
-        if (!window.confirm('Are you sure you want to start the vote counting process? This cannot be undone.')) {
-            return;
-        }
-
-        setIsTallying(true);
-        try {
-            // Simulate API call for tallying process
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            setIsTallyComplete(true);
-            setCandidates(dummyData);
-            const total = dummyData.reduce((sum, candidate) => sum + candidate.voteCount, 0);
-            setTotalVotes(total);
-        } catch (error) {
-            alert('Failed to start the tallying process. Please try again.');
-        } finally {
-            setIsTallying(false);
-        }
-    };
+    const [totalVotes, setTotalVotes] = useState(0);
 
     // Dummy data for demonstration
     const dummyData: Candidate[] = [
@@ -96,19 +55,16 @@ export default function Tally() {
     ];
 
     useEffect(() => {
-        // If tally is complete, load saved results
-        if (isTallyComplete) {
-            const savedResults = localStorage.getItem('tallyResults');
-            if (savedResults) {
-                setCandidates(JSON.parse(savedResults));
-                const savedTotalVotes = localStorage.getItem('totalVotes');
-                if (savedTotalVotes) {
-                    setTotalVotes(parseInt(savedTotalVotes));
-                }
-            }
-        }
-        setIsLoading(false);
-    }, [isTallyComplete]);
+        // Simulate API loading time
+        const timer = setTimeout(() => {
+            setCandidates(dummyData);
+            const total = dummyData.reduce((sum, candidate) => sum + candidate.voteCount, 0);
+            setTotalVotes(total);
+            setIsLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     // Sort candidates by vote count
     const sortedCandidates = [...candidates].sort((a, b) => b.voteCount - a.voteCount);
@@ -117,29 +73,15 @@ export default function Tally() {
     return (
         <div className="container mx-auto px-4 py-8">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-3">
-                    <BarChart2 size={32} className="text-indigo-600" />
-                    <h1 className="text-3xl font-bold text-gray-800">Election Results</h1>
-                </div>
-                { !isTallyComplete && (
-                    <button
-                        onClick={startTally}
-                        disabled={isTallying}
-                        className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <Play className="h-4 w-4 mr-2" />
-                        {isTallying ? 'Counting Votes...' : 'Start Vote Count'}
-                    </button>
-                )}
+            <div className="flex items-center gap-3 mb-8">
+                <BarChart2 size={32} className="text-indigo-600" />
+                <h1 className="text-3xl font-bold text-gray-800">Election Results</h1>
             </div>
 
-            {isLoading || isTallying ? (
+            {isLoading ? (
                 <div className="text-center py-8">
                     <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-600 border-t-transparent"></div>
-                    <p className="mt-2 text-gray-600">
-                        {isTallying ? 'Counting votes... Please wait.' : 'Loading results...'}
-                    </p>
+                    <p className="mt-2 text-gray-600">Loading results...</p>
                 </div>
             ) : (
                 <>

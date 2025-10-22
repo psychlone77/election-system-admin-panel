@@ -49,7 +49,7 @@ export default function Home() {
                             View the latest election results and statistics in real-time.
                         </p>
                         <button
-                            onClick={() => navigate('/tally')}
+                            onClick={() => navigate('/publictally')}
                             className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             <BarChart3 className="h-5 w-5 mr-2" />

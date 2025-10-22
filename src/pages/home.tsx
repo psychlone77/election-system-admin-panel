@@ -41,22 +41,24 @@ export default function Home() {
         {/* Features Section */}
         <div className="mt-20"></div>
 
-        {/* Results Section */}
-        <div className="mt-32 bg-indigo-50 rounded-xl p-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">Election Results</h2>
-            <p className="mt-4 text-lg text-gray-600">
-              View the latest election results and statistics in real-time.
-            </p>
-            <button
-              onClick={() => navigate("/tally")}
-              className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              <BarChart3 className="h-5 w-5 mr-2" />
-              View Election Results
-            </button>
-          </div>
-        </div>
+
+                {/* Results Section */}
+                <div className="mt-32 bg-indigo-50 rounded-xl p-8">
+                    <div className="text-center">
+                        <h2 className="text-3xl font-bold text-gray-900">Election Results</h2>
+                        <p className="mt-4 text-lg text-gray-600">
+                            View the latest election results and statistics in real-time.
+                        </p>
+                        <button
+                            onClick={() => navigate('/publictally')}
+                            className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            <BarChart3 className="h-5 w-5 mr-2" />
+                            View Election Results
+                        </button>
+                    </div>
+                </div>
+
 
         {/* vote Section */}
         <div className="mt-20 bg-emerald-50 rounded-xl p-8">

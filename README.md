@@ -10,10 +10,12 @@ This is the admin panel for the election system. It is part of the [Election Sys
 ## UI Screenshots
 
 ### Admin Tallying Complete Screen
-<!-- UI image placeholder - will be added -->
+<img width="940" height="485" alt="image" src="https://github.com/user-attachments/assets/bacf1dc5-45fc-43ab-ba05-865f7c75bcc3" />
+
 
 ### Public Ballot Display
-<!-- UI image placeholder - will be added -->
+<img width="940" height="561" alt="image" src="https://github.com/user-attachments/assets/b4768b6a-0a8a-418f-b251-0e49d5c62c5d" />
+
 
 ---
 

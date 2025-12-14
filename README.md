@@ -1,75 +1,186 @@
-# React + TypeScript + Vite
+# Election System Admin Panel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the admin panel for the election system. It is part of the [Election System Core](https://github.com/psychlone77/election-system-core) repository.
 
-Currently, two official plugins are available:
+## Related Repositories
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Election System Core](https://github.com/psychlone77/election-system-core) - Backend servers and cryptographic libraries
+- [Election System Mobile App](https://github.com/psychlone77/election-system-mobile-app) - Mobile voting application
 
-## React Compiler
+## UI Screenshots
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Admin Tallying Complete Screen
+<!-- UI image placeholder - will be added -->
 
-Note: This will impact Vite dev & build performances.
+### Public Ballot Display
+<!-- UI image placeholder - will be added -->
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Overview
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The Election System Admin Panel is a modern web application built with React and TypeScript, providing administrative interfaces for managing voters, candidates, and election tallying. It integrates with the Election System Core backend servers to provide a complete election management solution.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Technology Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Core Framework
+- **React 19** - Latest version with React Compiler enabled for automatic optimization
+- **TypeScript** - Type-safe development
+- **Vite 7** - Lightning-fast build tool and dev server
+
+### Key Libraries
+
+- **Auth0 React SDK** (`@auth0/auth0-react`) - Enterprise-grade authentication and authorization
+- **React Router v7** - Client-side routing and navigation
+- **Axios** - HTTP client for API communication with backend servers
+- **Lucide React** - Beautiful, consistent icon library
+- **TailwindCSS** - Utility-first CSS framework for rapid UI development
+
+### Development Tools
+
+- **React Compiler** (`babel-plugin-react-compiler`) - Automatic optimization of React components
+- **ESLint** - Code quality and consistency
+- **TypeScript ESLint** - TypeScript-specific linting rules
+- **PostCSS & Autoprefixer** - CSS processing and browser compatibility
+
+## Features
+
+The admin panel provides interfaces for:
+
+- **Voter Management** - Register and manage voter information
+- **Candidate Management** - Register and manage election candidates
+- **Ballot Management** - View and manage submitted ballots
+- **Tallying** - Initiate and view election results using threshold cryptography
+- **Public Results Display** - Public-facing results visualization
+- **Authentication** - Secure admin access via Auth0
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn package manager
+
+### Installation
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Running the Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Start the Vite development server with hot module replacement:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The application will be available at `http://localhost:5173` (or the next available port). The `--host` flag allows access from other devices on your network.
+
+### Building for Production
+
+Compile TypeScript and build optimized production bundle:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist/` directory.
+
+### Preview Production Build
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+### Linting
+
+Run ESLint to check code quality:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+election-system-admin-panel/
+├── src/
+│   ├── components/        # Reusable UI components
+│   │   ├── loginbutton.tsx
+│   │   ├── logoutbutton.tsx
+│   │   └── RequireAuth.tsx
+│   ├── layouts/          # Layout components
+│   │   └── adminlayouts.tsx
+│   ├── pages/            # Page components
+│   │   ├── candidates/   # Candidate management pages
+│   │   ├── voters/       # Voter management pages
+│   │   ├── dashboard.tsx
+│   │   ├── tally.tsx
+│   │   ├── publictally.tsx
+│   │   └── ...
+│   ├── routes/           # Route configuration
+│   │   └── index.tsx
+│   ├── services/         # API service layer
+│   │   ├── authServices.tsx
+│   │   ├── ballotServices.tsx
+│   │   └── candidateServices.tsx
+│   ├── App.tsx           # Root component
+│   └── main.tsx          # Application entry point
+├── public/               # Static assets
+├── index.html            # HTML template
+└── vite.config.ts        # Vite configuration
+```
+
+## Configuration
+
+### Vite Configuration
+
+The project uses Vite with React plugin and React Compiler enabled for automatic performance optimization:
+
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler']],
+      },
+    }),
+  ],
+})
+```
+
+### TailwindCSS
+
+TailwindCSS is configured to scan all TypeScript/JavaScript files in the `src` directory for class names.
+
+## Interesting Features
+
+### React Compiler
+This project uses the experimental React Compiler (formerly known as React Forget), which automatically optimizes React components by memoizing expensive computations and preventing unnecessary re-renders. This provides performance benefits similar to manually using `useMemo` and `useCallback`, but done automatically by the compiler.
+
+### Auth0 Integration
+Enterprise-grade authentication is implemented using Auth0, providing:
+- Secure OAuth 2.0 / OpenID Connect authentication
+- Multi-factor authentication support
+- Social login integration capabilities
+- Centralized user management
+
+### Modern React Patterns
+The codebase uses React 19 features and modern patterns, including:
+- Functional components with Hooks
+- TypeScript for type safety
+- Protected routes with authentication checks
+- Service layer abstraction for API calls
+
+## Development Notes
+
+- The dev server runs with `--host` flag to allow network access
+- React Compiler is enabled, which may impact build performance but improves runtime performance
+- TailwindCSS provides rapid UI development with utility classes
+- ESLint is configured with React-specific rules for code quality

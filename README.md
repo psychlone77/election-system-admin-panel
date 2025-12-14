@@ -73,7 +73,7 @@ This workspace contains three core servers and shared cryptographic libraries th
 - **Purpose**:  Distribute tallying server's private key across multiple parties
 - **Benefit**: No single party can decrypt ballots alone
 
-### 4. **AES-GCM Encryption** (`libs/crypto/src/aes. ts`)
+### 4. **AES-GCM Encryption** (`libs/crypto/src/aes.ts`)
 - **Algorithm**: AES-256-GCM
 - **Key Size**: 256-bit
 - **IV Size**: 96-bit (recommended for GCM)
@@ -196,7 +196,7 @@ election-system-core/
 │   │   ├── ed25519.ts         # Digital signature operations
 │   │   ├── aes.ts             # AES-GCM encryption
 │   │   ├── threshold.ts       # Shamir's Secret Sharing
-│   │   └── key-store. ts       # Key generation and management
+│   │   └── key-store.ts       # Key generation and management
 │   ├── database/              # TypeORM entities and repositories
 │   └── shared/                # Common utilities and config
 └── package.json
